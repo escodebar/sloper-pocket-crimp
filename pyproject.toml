@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "sloper-pocket-crimp"
+version = "0.1.0"
+description = "a rock paper scissors game for climbers"
+authors = ["Pablo Escodebar <escodebar@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sloper_pocket_crimp"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^7.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
