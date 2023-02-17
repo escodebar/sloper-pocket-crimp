@@ -8,6 +8,5 @@ def computer():
     return ComputerPlayer()
 
 
-@pytest.mark.xfail
 def test_computer_player_choses_a_gesture(computer):
     assert computer.choice() in Gestures

@@ -1,2 +1,7 @@
+from sloper_pocket_crimp import Gestures
+from random import choice
+
+
 class ComputerPlayer:
-    pass
+    def choice(self):
+        return choice(list(Gestures))
