@@ -4,7 +4,6 @@ from sloper_pocket_crimp import Outcomes
 import pytest
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "gesture_player_one, gesture_player_two, expected_outcome",
     [
