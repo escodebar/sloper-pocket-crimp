@@ -1,5 +1,7 @@
+from sloper_pocket_crimp import exceptions
 import pytest
 
 
-def test_exceptions_import():
-    from sloper_pocket_crimp import exceptions
+@pytest.mark.xfail
+def test_InvalidGesture_exists():
+    assert getattr(exceptions, "InvalidGesture", False)
