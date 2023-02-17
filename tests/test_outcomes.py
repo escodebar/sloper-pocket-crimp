@@ -1,5 +1,8 @@
 import pytest
+from sloper_pocket_crimp import Outcomes
 
 
-def test_outcomes_import():
-    from sloper_pocket_crimp import Outcomes
+@pytest.mark.xfail
+@pytest.mark.parametrize("outcome", ["PLAYER_ONE_WINS", "DRAW", "PLAYER_TWO_WINS"])
+def test_gesture_exist(outcome):
+    assert getattr(Outcomes, outcome, False)
