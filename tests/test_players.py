@@ -1,5 +1,13 @@
+from sloper_pocket_crimp import ComputerPlayer
+from sloper_pocket_crimp import Gestures
 import pytest
 
 
-def test_computer_player_class_exists():
-    from sloper_pocket_crimp import ComputerPlayer
+@pytest.fixture
+def computer():
+    return ComputerPlayer()
+
+
+@pytest.mark.xfail
+def test_computer_player_choses_a_gesture(computer):
+    assert computer.choice() in Gestures
