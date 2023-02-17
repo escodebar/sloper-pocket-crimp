@@ -2,4 +2,6 @@ from enum import Enum
 
 
 class Gestures(Enum):
-    pass
+    SLOPER = 1
+    POCKET = 2
+    CRIMP = 3
