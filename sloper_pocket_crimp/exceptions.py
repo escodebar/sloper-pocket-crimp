@@ -1,0 +1,2 @@
+class InvalidGesture:
+    pass
