@@ -1,3 +1,4 @@
+from sloper_pocket_crimp import exceptions
 from sloper_pocket_crimp.gestures import Gestures
 from sloper_pocket_crimp.outcomes import Outcomes
 
@@ -15,4 +16,7 @@ _rules_lookup_table = {
 
 
 def game(gesture_one, gesture_two):
-    return _rules_lookup_table[(gesture_one, gesture_two)]
+    try:
+        return _rules_lookup_table[(gesture_one, gesture_two)]
+    except KeyError:
+        raise exceptions.InvalidGesture

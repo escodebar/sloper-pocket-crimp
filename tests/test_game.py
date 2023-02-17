@@ -36,7 +36,6 @@ def invalid_gesture(request):
     return request.param
 
 
-@pytest.mark.xfail
 def test_game_raises_InvalidGesture(valid_gesture, invalid_gesture):
     with pytest.raises(exceptions.InvalidGesture):
         game(gesture_one=valid_gesture, gesture_two=invalid_gesture)
