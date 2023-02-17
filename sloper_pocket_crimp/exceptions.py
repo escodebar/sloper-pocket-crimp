@@ -1,2 +1,2 @@
-class InvalidGesture:
+class InvalidGesture(Exception):
     pass
