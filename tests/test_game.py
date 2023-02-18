@@ -1,3 +1,4 @@
+from enum import Enum
 from sloper_pocket_crimp import exceptions
 from sloper_pocket_crimp import Game
 from sloper_pocket_crimp import Gestures
@@ -44,3 +45,27 @@ def invalid_gesture(request):
 def test_outcome_raises_InvalidGesture(game, valid_gesture, invalid_gesture):
     with pytest.raises(exceptions.InvalidGesture):
         game.outcome(gesture_one=valid_gesture, gesture_two=invalid_gesture)
+
+
+@pytest.mark.xfail
+@pytest.mark.parametrize(
+    "game_modes, expected_print",
+    [
+        (
+            Enum("GameModes", ["MACHINE_VS_MACHINE", "HUMAN_VS_MACHINE"]),
+            "Choose a game mode from the following list:\n"
+            "0: Machine Vs Machine\n"
+            "1: Human Vs Machine\n",
+        ),
+        (
+            Enum("GameModes", ["MACHINE_VS_MACHINE"]),
+            "Choose a game mode from the following list:\n" "0: Machine Vs Machine\n",
+        ),
+    ],
+)
+def test_lists_game_modes(game, game_modes, expected_print, capsys):
+    game._list_game_modes(list(game_modes))
+
+    captured = capsys.readouterr()
+
+    assert expected_print == captured.out
