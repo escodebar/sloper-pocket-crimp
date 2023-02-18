@@ -55,7 +55,6 @@ def test_human_player_chose_gesture(monkeypatch, human, chosen_value, gestures):
     assert gestures[chosen_value] == human._chose_gesture(gestures)
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "chosen_values, expected_gesture",
     [

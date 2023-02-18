@@ -25,5 +25,14 @@ class HumanPlayer:
         return gestures[choice]
 
     def choice(self, gestures):
-        self._list_available_gestures(gestures)
-        return self._chose_gesture(gestures)
+        while True:
+            try:
+                self._list_available_gestures(gestures)
+                return self._chose_gesture(gestures)
+            except (ValueError, IndexError):
+                print(
+                    "Oopsie! That was not a valid gesture.\n"
+                    f"Please use the numbers from 0 to {len(gestures)}"
+                )
+            else:
+                break
