@@ -68,3 +68,23 @@ def test_lists_game_modes(game, game_modes, expected_print, capsys):
     captured = capsys.readouterr()
 
     assert expected_print == captured.out
+
+
+@pytest.mark.xfail
+@pytest.mark.parametrize(
+    "game_modes, choice",
+    [
+        (Enum("GameModes", ["MACHINE_VS_MACHINE", "HUMAN_VS_MACHINE"]), 1),
+        (Enum("GameModes", ["MACHINE_VS_MACHINE"]), 0),
+    ],
+)
+def test_choose_mode_selects_expected_mode(
+    monkeypatch, game, game_modes, choice, capsys
+):
+    monkeypatch.setattr("builtins.input", lambda _: str(choice))
+
+    game_mode_list = list(game_modes)
+
+    chosen_mode = game._choose_game_mode(game_mode_list)
+
+    assert game_mode_list[choice] == chosen_mode
