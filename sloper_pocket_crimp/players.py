@@ -1,13 +1,9 @@
-from sloper_pocket_crimp import Gestures
 from random import choice
 
 
-gestures = list(Gestures)
-
-
 class ComputerPlayer:
-    def choice(self):
-        return choice(list(Gestures))
+    def choice(self, gestures):
+        return choice(gestures)
 
 
 class HumanPlayer:
@@ -28,6 +24,6 @@ class HumanPlayer:
         )
         return gestures[choice]
 
-    def choice(self):
+    def choice(self, gestures):
         self._list_available_gestures(gestures)
         return self._chose_gesture(gestures)

@@ -5,12 +5,17 @@ import pytest
 
 
 @pytest.fixture
+def gestures():
+    return list(Gestures)
+
+
+@pytest.fixture
 def computer():
     return ComputerPlayer()
 
 
-def test_computer_player_choses_a_gesture(computer):
-    assert computer.choice() in Gestures
+def test_computer_player_choses_a_gesture(computer, gestures):
+    assert computer.choice(gestures) in Gestures
 
 
 @pytest.fixture
