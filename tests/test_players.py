@@ -18,12 +18,6 @@ def human():
     return HumanPlayer()
 
 
-@pytest.mark.parametrize("input_value", ["0", "1", "2"])
-def test_human_player_choses_a_gesture(monkeypatch, human, input_value):
-    monkeypatch.setattr("builtins.input", lambda _: input_value)
-    assert human.choice() in Gestures
-
-
 @pytest.mark.parametrize(
     "gestures, expected_print",
     [
@@ -46,3 +40,12 @@ def tests_list_available_gestures(human, gestures, expected_print, capsys):
     captured = capsys.readouterr()
 
     assert expected_print == captured.out
+
+
+@pytest.mark.parametrize("chosen_value", [0, 1, 2])
+def test_human_player_chose_gesture(monkeypatch, human, chosen_value):
+    monkeypatch.setattr("builtins.input", lambda _: str(chosen_value))
+
+    gestures = list(Gestures)
+
+    assert gestures[chosen_value] == human._chose_gesture(gestures)
