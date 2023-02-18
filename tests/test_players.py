@@ -18,7 +18,6 @@ def human():
     return HumanPlayer()
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize("input_value", ["0", "1", "2"])
 def test_human_player_choses_a_gesture(monkeypatch, human, input_value):
     monkeypatch.setattr("builtins.input", lambda _: input_value)
