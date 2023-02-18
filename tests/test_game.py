@@ -1,9 +1,14 @@
 from sloper_pocket_crimp import exceptions
-from sloper_pocket_crimp import game
+from sloper_pocket_crimp import Game
 from sloper_pocket_crimp import Gestures
 from sloper_pocket_crimp import Outcomes
 from unittest.mock import MagicMock
 import pytest
+
+
+@pytest.fixture
+def game():
+    return Game()
 
 
 @pytest.mark.parametrize(
@@ -20,8 +25,8 @@ import pytest
         (Gestures.CRIMP, Gestures.CRIMP, Outcomes.DRAW),
     ],
 )
-def test_game_outcomes(gesture_player_one, gesture_player_two, expected_outcome):
-    assert expected_outcome == game(
+def test_game_outcome(game, gesture_player_one, gesture_player_two, expected_outcome):
+    assert expected_outcome == game.outcome(
         gesture_one=gesture_player_one, gesture_two=gesture_player_two
     )
 
@@ -36,6 +41,6 @@ def invalid_gesture(request):
     return request.param
 
 
-def test_game_raises_InvalidGesture(valid_gesture, invalid_gesture):
+def test_outcome_raises_InvalidGesture(game, valid_gesture, invalid_gesture):
     with pytest.raises(exceptions.InvalidGesture):
-        game(gesture_one=valid_gesture, gesture_two=invalid_gesture)
+        game.outcome(gesture_one=valid_gesture, gesture_two=invalid_gesture)
