@@ -24,7 +24,6 @@ def test_human_player_choses_a_gesture(monkeypatch, human, input_value):
     assert human.choice() in Gestures
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "gestures, expected_print",
     [

@@ -14,7 +14,10 @@ class HumanPlayer:
     def _list_available_gestures(self, gestures):
         print("Choose a gesture from the following list:")
         print(
-            "\n".join(f"{index}: {gesture}" for index, gesture in enumerate(gestures))
+            "\n".join(
+                f"{index}: {gesture.name.title()}"
+                for index, gesture in enumerate(gestures)
+            )
         )
 
     def _chose_gesture(self, gestures):
