@@ -25,6 +25,14 @@ class Game:
             )
         )
 
+    def _choose_game_mode(self, game_modes):
+        choice = int(
+            input(
+                "Which game do you pick? {'/'.join(map(str, range(len(game_modes))))} :"
+            )
+        )
+        return game_modes[choice]
+
     def outcome(self, gesture_one, gesture_two):
         try:
             return self._rules_lookup_table[(gesture_one, gesture_two)]

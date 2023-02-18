@@ -70,7 +70,6 @@ def test_lists_game_modes(game, game_modes, expected_print, capsys):
     assert expected_print == captured.out
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "game_modes, choice",
     [
