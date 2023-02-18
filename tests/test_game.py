@@ -47,7 +47,6 @@ def test_outcome_raises_InvalidGesture(game, valid_gesture, invalid_gesture):
         game.outcome(gesture_one=valid_gesture, gesture_two=invalid_gesture)
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "game_modes, expected_print",
     [
