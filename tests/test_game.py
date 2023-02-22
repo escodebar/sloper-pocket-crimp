@@ -1,7 +1,9 @@
 from enum import Enum
 from sloper_pocket_crimp import exceptions
+from sloper_pocket_crimp import ComputerPlayer
 from sloper_pocket_crimp import Game
 from sloper_pocket_crimp import Gestures
+from sloper_pocket_crimp import HumanPlayer
 from sloper_pocket_crimp import Outcomes
 from unittest.mock import MagicMock
 import pytest
@@ -87,3 +89,24 @@ def test_choose_mode_selects_expected_mode(
     chosen_mode = game._choose_game_mode(game_mode_list)
 
     assert game_mode_list[choice] == chosen_mode
+
+
+@pytest.fixture
+def game_modes():
+    return Enum("GameModes", ["MACHINE_VS_MACHINE", "HUMAN_VS_MACHINE"])
+
+
+@pytest.mark.xfail
+@pytest.mark.parametrize(
+    "mode, expected_player_types",
+    [
+        ("HUMAN_VS_MACHINE", [HumanPlayer, ComputerPlayer]),
+        ("MACHINE_VS_MACHINE", [ComputerPlayer, ComputerPlayer]),
+    ],
+)
+def test_generate_players(game, game_modes, mode, expected_player_types):
+    players = game.generate_players(getattr(game_modes, mode))
+
+    player_types = list(map(type, players))
+
+    assert expected_player_types == player_types
